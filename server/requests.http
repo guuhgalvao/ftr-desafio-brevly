@@ -44,3 +44,11 @@ Content-Type: application/json
 ###
 # GET /links → 200 com todos os links, mais recentes primeiro
 GET {{baseUrl}}/links
+
+###
+# GET /links/:shortUrl → 200 com o link (não incrementa acessos)
+GET {{baseUrl}}/links/gustavo-github
+
+###
+# GET /links/:shortUrl → 404
+GET {{baseUrl}}/links/nao-existe
