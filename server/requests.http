@@ -82,3 +82,13 @@ DELETE {{baseUrl}}/links/123
 ###
 # DELETE /links/:id → 404 (UUID válido que não existe)
 DELETE {{baseUrl}}/links/0192f1c4-8b7a-7cc3-9f1e-3b2a1c0d4e5f
+
+###
+# POST /links/exports → 200 com { reportUrl }
+# (abrir a URL no navegador baixa brevly-links.csv; cada chamada gera um arquivo novo)
+POST {{baseUrl}}/links/exports
+
+###
+# POST /links/exports → 200 mesmo com Content-Type JSON e corpo vazio
+POST {{baseUrl}}/links/exports
+Content-Type: application/json

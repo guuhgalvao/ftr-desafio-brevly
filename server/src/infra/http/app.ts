@@ -8,6 +8,7 @@ import {
 import { errorHandler } from './error-handler'
 import { createLinkRoute } from './routes/create-link'
 import { deleteLinkRoute } from './routes/delete-link'
+import { exportLinksRoute } from './routes/export-links'
 import { getLinkByShortUrlRoute } from './routes/get-link-by-short-url'
 import { healthRoute } from './routes/health'
 import { incrementLinkAccessRoute } from './routes/increment-link-access'
@@ -49,6 +50,7 @@ export function buildApp() {
   app.register(getLinkByShortUrlRoute)
   app.register(incrementLinkAccessRoute)
   app.register(deleteLinkRoute)
+  app.register(exportLinksRoute)
 
   return app
 }
