@@ -1,0 +1,22 @@
+name: brevly
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: brevly
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U docker -d brevly']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pg-data:
