@@ -17,6 +17,20 @@ export function buildApp() {
   app.setValidatorCompiler(validatorCompiler)
   app.setSerializerCompiler(serializerCompiler)
 
+  // Routes without a body (PATCH /links/:id/access, DELETE /links/:id) may still receive
+  // `Content-Type: application/json` from clients. Treat an empty body as no body instead of 400.
+  const defaultJsonParser = app.getDefaultJsonParser('error', 'error')
+  app.removeContentTypeParser('application/json')
+  app.addContentTypeParser('application/json', { parseAs: 'string' }, (request, body, done) => {
+    const text = body.toString()
+
+    if (text === '') {
+      return done(null, undefined)
+    }
+
+    return defaultJsonParser(request, text, done)
+  })
+
   app.setErrorHandler(errorHandler)
   app.setNotFoundHandler((_request, reply) => {
     return reply.status(404).send({ message: 'Route not found.' })
