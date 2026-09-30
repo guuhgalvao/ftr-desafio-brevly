@@ -1,5 +1,5 @@
 import { WarningIcon } from '@phosphor-icons/react'
-import { type ComponentProps, useId } from 'react'
+import { type ComponentProps, type MouseEvent, useId } from 'react'
 import { cn } from '@/lib/cn'
 
 type InputProps = ComponentProps<'input'> & {
@@ -7,6 +7,15 @@ type InputProps = ComponentProps<'input'> & {
   error?: string
   // Fixed, non-editable text shown before the value (e.g. `brev.ly/`).
   prefix?: string
+}
+
+// Clicking anywhere in the field (including the prefix) focuses the input.
+function focusInput(event: MouseEvent<HTMLDivElement>) {
+  const input = event.currentTarget.querySelector('input')
+  if (input && event.target !== input) {
+    event.preventDefault()
+    input.focus()
+  }
 }
 
 export function Input({ label, error, prefix, id, placeholder, className, ...props }: InputProps) {
@@ -27,9 +36,9 @@ export function Input({ label, error, prefix, id, placeholder, className, ...pro
         {label}
       </label>
 
-      {/* Clicking anywhere in the field (including the prefix) focuses the input. */}
-      <label
-        htmlFor={inputId}
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: mouse-only convenience; the input itself is keyboard-focusable. */}
+      <div
+        onMouseDown={focusInput}
         className={cn(
           'flex h-12 cursor-text items-center rounded-lg bg-transparent px-4 text-md',
           hasError
@@ -51,7 +60,7 @@ export function Input({ label, error, prefix, id, placeholder, className, ...pro
           className="h-full min-w-0 flex-1 bg-transparent text-gray-600 caret-blue-base outline-none placeholder:text-gray-400"
           {...props}
         />
-      </label>
+      </div>
 
       {hasError && (
         <p id={errorId} className="flex items-center gap-2 text-gray-500 text-sm">

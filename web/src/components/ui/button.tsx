@@ -39,7 +39,13 @@ export function Button({
       )}
       {...props}
     >
-      {IconComponent && <IconComponent size={16} className="shrink-0 text-gray-600" />}
+      {IconComponent && (
+        // The design only defines an icon on the secondary variant (gray-600); otherwise it follows the text.
+        <IconComponent
+          size={16}
+          className={cn('shrink-0', variant === 'secondary' && 'text-gray-600')}
+        />
+      )}
       {children}
     </button>
   )
