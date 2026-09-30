@@ -18,5 +18,19 @@ services:
       timeout: 5s
       retries: 10
 
+  # Optional: runs the production image. Start with `docker compose --profile app up -d --build`.
+  api:
+    profiles: [app]
+    build: .
+    image: brevly-server
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://docker:docker@postgres:5432/brevly
+    ports:
+      - '${PORT:-3333}:${PORT:-3333}'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   pg-data:
