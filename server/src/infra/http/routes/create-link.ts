@@ -2,7 +2,7 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { createLink } from '@/app/functions/create-link'
 import { createLinkInputSchema, linkSchema } from '@/app/schemas/links'
 import { isLeft } from '@/shared/either'
-import { errorSchema, validationErrorSchema } from '../schemas/errors'
+import { badRequestErrorSchema, errorSchema } from '../schemas/errors'
 
 export const createLinkRoute: FastifyPluginAsyncZod = async (app) => {
   app.post(
@@ -12,7 +12,7 @@ export const createLinkRoute: FastifyPluginAsyncZod = async (app) => {
         body: createLinkInputSchema,
         response: {
           201: linkSchema,
-          400: validationErrorSchema,
+          400: badRequestErrorSchema,
           409: errorSchema,
         },
       },
