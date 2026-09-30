@@ -7,6 +7,7 @@ import {
 } from 'fastify-type-provider-zod'
 import { errorHandler } from './error-handler'
 import { createLinkRoute } from './routes/create-link'
+import { deleteLinkRoute } from './routes/delete-link'
 import { getLinkByShortUrlRoute } from './routes/get-link-by-short-url'
 import { healthRoute } from './routes/health'
 import { incrementLinkAccessRoute } from './routes/increment-link-access'
@@ -47,6 +48,7 @@ export function buildApp() {
   app.register(listLinksRoute)
   app.register(getLinkByShortUrlRoute)
   app.register(incrementLinkAccessRoute)
+  app.register(deleteLinkRoute)
 
   return app
 }
