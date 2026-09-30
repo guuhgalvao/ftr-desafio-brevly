@@ -6,6 +6,7 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 import { errorHandler } from './error-handler'
+import { createLinkRoute } from './routes/create-link'
 import { healthRoute } from './routes/health'
 
 export function buildApp() {
@@ -25,6 +26,7 @@ export function buildApp() {
   })
 
   app.register(healthRoute)
+  app.register(createLinkRoute)
 
   return app
 }

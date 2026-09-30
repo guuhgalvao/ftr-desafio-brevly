@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3333
+
+###
+# POST /links → 201 com o Link
+# @name createLink
+POST {{baseUrl}}/links
+Content-Type: application/json
+
+{
+  "originalUrl": "https://github.com/gustavo",
+  "shortUrl": "gustavo-github"
+}
+
+###
+# POST /links → 400 (originalUrl inválida)
+POST {{baseUrl}}/links
+Content-Type: application/json
+
+{
+  "originalUrl": "github.com/gustavo",
+  "shortUrl": "gustavo-invalid-url"
+}
+
+###
+# POST /links → 400 (shortUrl fora da regra)
+POST {{baseUrl}}/links
+Content-Type: application/json
+
+{
+  "originalUrl": "https://github.com/gustavo",
+  "shortUrl": "no spaces!"
+}
+
+###
+# POST /links → 409 (shortUrl repetido; rode depois do primeiro POST)
+POST {{baseUrl}}/links
+Content-Type: application/json
+
+{
+  "originalUrl": "https://github.com/outro",
+  "shortUrl": "gustavo-github"
+}
