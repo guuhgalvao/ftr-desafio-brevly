@@ -40,3 +40,7 @@ Content-Type: application/json
   "originalUrl": "https://github.com/outro",
   "shortUrl": "gustavo-github"
 }
+
+###
+# GET /links → 200 com todos os links, mais recentes primeiro
+GET {{baseUrl}}/links

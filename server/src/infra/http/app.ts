@@ -8,6 +8,7 @@ import {
 import { errorHandler } from './error-handler'
 import { createLinkRoute } from './routes/create-link'
 import { healthRoute } from './routes/health'
+import { listLinksRoute } from './routes/list-links'
 
 export function buildApp() {
   const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>()
@@ -27,6 +28,7 @@ export function buildApp() {
 
   app.register(healthRoute)
   app.register(createLinkRoute)
+  app.register(listLinksRoute)
 
   return app
 }
