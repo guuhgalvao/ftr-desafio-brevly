@@ -9,6 +9,7 @@ import { errorHandler } from './error-handler'
 import { createLinkRoute } from './routes/create-link'
 import { getLinkByShortUrlRoute } from './routes/get-link-by-short-url'
 import { healthRoute } from './routes/health'
+import { incrementLinkAccessRoute } from './routes/increment-link-access'
 import { listLinksRoute } from './routes/list-links'
 
 export function buildApp() {
@@ -45,6 +46,7 @@ export function buildApp() {
   app.register(createLinkRoute)
   app.register(listLinksRoute)
   app.register(getLinkByShortUrlRoute)
+  app.register(incrementLinkAccessRoute)
 
   return app
 }

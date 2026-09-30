@@ -52,3 +52,21 @@ GET {{baseUrl}}/links/gustavo-github
 ###
 # GET /links/:shortUrl → 404
 GET {{baseUrl}}/links/nao-existe
+
+###
+# PATCH /links/:id/access → 200 com { id, accessCount } incrementado
+# (usa o id do primeiro POST; sintaxe de variáveis do REST Client do VS Code)
+PATCH {{baseUrl}}/links/{{createLink.response.body.$.id}}/access
+
+###
+# PATCH /links/:id/access → 200 mesmo com Content-Type JSON e corpo vazio
+PATCH {{baseUrl}}/links/{{createLink.response.body.$.id}}/access
+Content-Type: application/json
+
+###
+# PATCH /links/:id/access → 400 (id não é UUID)
+PATCH {{baseUrl}}/links/123/access
+
+###
+# PATCH /links/:id/access → 404 (UUID válido que não existe)
+PATCH {{baseUrl}}/links/0192f1c4-8b7a-7cc3-9f1e-3b2a1c0d4e5f/access
