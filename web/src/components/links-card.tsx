@@ -45,7 +45,7 @@ export function LinksCard() {
   return (
     <Card
       aria-busy={isPending}
-      className="min-h-0 gap-4 p-6 lg:max-h-full lg:flex-1 lg:shrink-0 lg:gap-5 lg:p-8"
+      className="min-h-0 gap-4 p-6 lg:max-h-full lg:min-w-0 lg:flex-1 lg:shrink-0 lg:gap-5 lg:p-8"
     >
       <header className="flex items-center justify-between gap-4">
         <h2 className="font-bold text-lg">Meus links</h2>
