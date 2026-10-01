@@ -1,8 +1,12 @@
 import { CopyIcon, DownloadSimpleIcon, TrashIcon } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { IconButton } from '@/components/ui/icon-button'
 import { Input } from '@/components/ui/input'
+import { Spinner } from '@/components/ui/spinner'
+import { Toast } from '@/components/ui/toaster'
+import { toast } from '@/lib/toast'
 
 // Style Guide: base components in every state. Dev-only route (`/styleguide`), see routes.tsx.
 
@@ -106,6 +110,66 @@ export function StyleGuide() {
             defaultValue="Linkedin-Profile"
             error={ERROR_MESSAGE}
           />
+        </div>
+      </Section>
+
+      <Section title="Card">
+        <Card className="gap-4 bg-gray-200 p-6">
+          <span className="text-gray-500 text-sm">
+            Fundo gray-100 e raio 8px (aqui em gray-200 para contrastar com a seção).
+          </span>
+        </Card>
+      </Section>
+
+      <Section title="Spinner">
+        <div className="flex flex-wrap gap-8">
+          <State label="16px">
+            <Spinner />
+          </State>
+          <State label="32px gray-400">
+            <Spinner size={32} className="text-gray-400" />
+          </State>
+          <State label="No botão primário">
+            <Button disabled>
+              <Spinner />
+              Salvando...
+            </Button>
+          </State>
+        </div>
+      </Section>
+
+      <Section title="Toast">
+        <div className="grid gap-4 lg:grid-cols-2">
+          <State label="Info">
+            <Toast
+              variant="info"
+              title="Link copiado com sucesso"
+              description="O link Linkedin-Profile foi copiado para a área de transferência."
+            />
+          </State>
+          <State label="Erro">
+            <Toast
+              variant="error"
+              title="Erro no cadastro"
+              description="Essa URL encurtada já existe."
+            />
+          </State>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast.info('Link copiado com sucesso', 'Exemplo de toast de informação.')
+            }
+          >
+            Disparar info
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => toast.error('Erro no cadastro', 'Exemplo de toast de erro.')}
+          >
+            Disparar erro
+          </Button>
         </div>
       </Section>
     </main>
