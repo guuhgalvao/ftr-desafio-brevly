@@ -29,7 +29,7 @@ function ListState({ children }: { children: ReactNode }) {
 }
 
 export function LinksCard() {
-  const { data, isPending, isError, isFetching, refetch } = useQuery({
+  const { data, isPending, isFetching, refetch } = useQuery({
     queryKey: linkKeys.all,
     queryFn: listLinks,
   })
@@ -64,7 +64,8 @@ export function LinksCard() {
           <Spinner size={32} className="text-gray-400" />
           carregando links...
         </ListState>
-      ) : isError ? (
+      ) : !data ? (
+        // Only without cached data: a failed background refetch keeps showing the last list.
         <ListState>
           <WarningIcon size={32} className="text-danger" />
           não foi possível carregar os links
