@@ -47,7 +47,7 @@ export function LinkItem({ link }: LinkItemProps) {
   }
 
   return (
-    <li className="border-gray-200 border-t py-3 last:pb-0 lg:py-4 lg:last:pb-0">
+    <li className="not-first:-mt-px border-gray-200 border-t py-3 last:pb-0 lg:py-4 lg:last:pb-0">
       <div className="flex items-center gap-4 py-0.5 lg:gap-5">
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <a

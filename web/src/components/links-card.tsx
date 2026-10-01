@@ -20,10 +20,10 @@ function downloadFile(url: string) {
 }
 
 // Empty, loading and error states share the empty state layout from the design.
-// The bottom padding is 28px in the Figma frame, where the divider takes no height; here its 1px is discounted.
+// As in the design, the divider takes no height: it is pulled 1px up into the gap above.
 function ListState({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-3 border-gray-200 border-t pt-8 pb-[27px] text-center text-gray-500 text-xs uppercase">
+    <div className="-mt-px flex flex-col items-center gap-3 border-gray-200 border-t pt-8 pb-7 text-center text-gray-500 text-xs uppercase">
       {children}
     </div>
   )
@@ -86,7 +86,7 @@ export function LinksCard() {
         </ListState>
       ) : (
         // The card is capped by the viewport (see Home), so a long list scrolls here and not the page.
-        <ul className="min-h-0 overflow-y-auto">
+        <ul className="-mt-px min-h-0 overflow-y-auto">
           {links.map((link) => (
             <LinkItem key={link.id} link={link} />
           ))}
