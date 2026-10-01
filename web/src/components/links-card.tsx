@@ -20,9 +20,10 @@ function downloadFile(url: string) {
 }
 
 // Empty, loading and error states share the empty state layout from the design.
+// The bottom padding is 28px in the Figma frame, where the divider takes no height; here its 1px is discounted.
 function ListState({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-3 border-gray-200 border-t pt-8 pb-6 text-center text-gray-500 text-xs uppercase">
+    <div className="flex flex-col items-center gap-3 border-gray-200 border-t pt-8 pb-[27px] text-center text-gray-500 text-xs uppercase">
       {children}
     </div>
   )
