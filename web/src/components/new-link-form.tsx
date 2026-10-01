@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { getErrorDescription } from '@/lib/error-message'
-import { displayHost, formMessages, newLinkSchema } from '@/lib/links'
+import { formMessages, newLinkSchema, prefixDomain } from '@/lib/links'
 import { toast } from '@/lib/toast'
 
 const ERROR_TITLE = 'Erro no cadastro'
@@ -83,7 +83,7 @@ export function NewLinkForm() {
           />
           <Input
             label="link encurtado"
-            prefix={`${displayHost}/`}
+            prefix={`${prefixDomain}/`}
             autoComplete="off"
             autoCapitalize="none"
             spellCheck={false}

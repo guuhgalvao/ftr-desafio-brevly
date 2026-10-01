@@ -4,8 +4,11 @@ import { env } from '@/env'
 const frontendUrl = env.VITE_FRONTEND_URL.replace(/\/+$/, '')
 const PROTOCOL = /^https?:\/\//i
 
-// Domain shown in the UI, as in the design. Copied and opened links use the real `VITE_FRONTEND_URL`.
-export const displayHost = env.VITE_DISPLAY_DOMAIN.replace(PROTOCOL, '').replace(/\/+$/, '')
+// Real host of the short links, shown in the list (e.g. `localhost:5173`).
+export const frontendHost = frontendUrl.replace(PROTOCOL, '')
+
+// Domain shown as the form field prefix, as in the design (`brev.ly` by default).
+export const prefixDomain = env.VITE_DISPLAY_DOMAIN.replace(PROTOCOL, '').replace(/\/+$/, '')
 
 export function buildShortLink(shortUrl: string) {
   return `${frontendUrl}/${shortUrl}`

@@ -4,7 +4,7 @@ import { ApiError } from '@/api/errors'
 import { deleteLink, type Link, linkKeys } from '@/api/links'
 import { IconButton } from '@/components/ui/icon-button'
 import { getErrorDescription } from '@/lib/error-message'
-import { buildShortLink, displayHost, formatAccessCount, stripProtocol } from '@/lib/links'
+import { buildShortLink, formatAccessCount, frontendHost, stripProtocol } from '@/lib/links'
 import { toast } from '@/lib/toast'
 
 interface LinkItemProps {
@@ -56,7 +56,7 @@ export function LinkItem({ link }: LinkItemProps) {
             rel="noreferrer"
             className="truncate font-semibold text-blue-base text-md"
           >
-            {displayHost}/{link.shortUrl}
+            {frontendHost}/{link.shortUrl}
           </a>
           <span className="truncate text-gray-500 text-sm">{stripProtocol(link.originalUrl)}</span>
         </div>
