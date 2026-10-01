@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { IconButton } from '@/components/ui/icon-button'
 import { Input } from '@/components/ui/input'
 
-// Temporary Style Guide page (phase 5). Replaced by the real home page in phase 6.
+// Style Guide: base components in every state. Dev-only route (`/styleguide`), see routes.tsx.
 
 const ERROR_MESSAGE = 'Mensagem de erro de exemplo.'
 
@@ -26,12 +26,12 @@ function State({ label, children }: { label: string; children: ReactNode }) {
   )
 }
 
-export function ComponentsPreview() {
+export function StyleGuide() {
   return (
     <main className="mx-auto flex max-w-[980px] flex-col gap-3 px-3 py-8 lg:gap-5 lg:py-22">
       <h1 className="font-bold text-xl">Style Guide</h1>
       <p className="text-gray-500 text-md">
-        Página temporária. Passe o mouse e use Tab para ver hover e foco.
+        Componentes base em todos os estados. Passe o mouse e use Tab para ver hover e foco.
       </p>
 
       <Section title="Button primary">

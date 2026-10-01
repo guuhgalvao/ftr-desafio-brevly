@@ -15,6 +15,7 @@
     "moduleDetection": "force",
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
     "noEmit": true
   },
   "include": ["vite.config.ts", "src/env-schema.ts"]
