@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { ApiError } from '@/api/errors'
 import { createLink, linkKeys } from '@/api/links'
 import { Button } from '@/components/ui/button'
@@ -25,6 +25,7 @@ function isField(value: unknown): value is keyof typeof fieldMessages {
 export function NewLinkForm() {
   const queryClient = useQueryClient()
   const {
+    control,
     register,
     handleSubmit,
     reset,
@@ -34,6 +35,10 @@ export function NewLinkForm() {
     resolver: zodResolver(newLinkSchema),
     defaultValues: { originalUrl: '', shortUrl: '' },
   })
+
+  // As in the design, the button stays disabled until both fields are filled.
+  const values = useWatch({ control })
+  const isIncomplete = !values.originalUrl?.trim() || !values.shortUrl?.trim()
 
   const { mutate, isPending } = useMutation({
     mutationFn: createLink,
@@ -93,7 +98,7 @@ export function NewLinkForm() {
           />
         </div>
 
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending || isIncomplete}>
           {isPending ? (
             <>
               <Spinner />
