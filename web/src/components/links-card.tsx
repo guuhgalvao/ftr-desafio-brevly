@@ -44,7 +44,7 @@ export function LinksCard() {
   return (
     <Card
       aria-busy={isPending}
-      className="gap-4 p-6 lg:max-h-[calc(100dvh-176px)] lg:flex-1 lg:shrink-0 lg:gap-5 lg:p-8"
+      className="min-h-0 gap-4 p-6 lg:max-h-full lg:flex-1 lg:shrink-0 lg:gap-5 lg:p-8"
     >
       <header className="flex items-center justify-between gap-4">
         <h2 className="font-bold text-lg">Meus links</h2>
@@ -84,8 +84,8 @@ export function LinksCard() {
           ainda não existem links cadastrados
         </ListState>
       ) : (
-        // The list scrolls inside the card on desktop; on mobile the page scrolls.
-        <ul className="lg:min-h-0 lg:overflow-y-auto">
+        // The card is capped by the viewport (see Home), so a long list scrolls here and not the page.
+        <ul className="min-h-0 overflow-y-auto">
           {links.map((link) => (
             <LinkItem key={link.id} link={link} />
           ))}
