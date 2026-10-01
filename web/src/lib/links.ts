@@ -4,8 +4,8 @@ import { env } from '@/env'
 const frontendUrl = env.VITE_FRONTEND_URL.replace(/\/+$/, '')
 const PROTOCOL = /^https?:\/\//i
 
-// Host shown in the UI in place of the design's `brev.ly` (e.g. `localhost:5173`).
-export const displayHost = frontendUrl.replace(PROTOCOL, '')
+// Domain shown in the UI, as in the design. Copied and opened links use the real `VITE_FRONTEND_URL`.
+export const displayHost = env.VITE_DISPLAY_DOMAIN.replace(PROTOCOL, '').replace(/\/+$/, '')
 
 export function buildShortLink(shortUrl: string) {
   return `${frontendUrl}/${shortUrl}`
