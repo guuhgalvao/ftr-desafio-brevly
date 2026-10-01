@@ -22,7 +22,7 @@ function downloadFile(url: string) {
 // Empty, loading and error states share the empty state layout from the design.
 function ListState({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-3 border-gray-200 border-t pt-4 pb-6 text-center text-gray-500 text-xs uppercase">
+    <div className="flex flex-col items-center gap-3 border-gray-200 border-t pt-8 pb-6 text-center text-gray-500 text-xs uppercase">
       {children}
     </div>
   )
@@ -44,7 +44,7 @@ export function LinksCard() {
   return (
     <Card
       aria-busy={isPending}
-      className="gap-4 p-6 lg:max-h-[calc(100dvh-176px)] lg:w-[580px] lg:shrink-0 lg:gap-5 lg:p-8"
+      className="gap-4 p-6 lg:max-h-[calc(100dvh-176px)] lg:flex-1 lg:shrink-0 lg:gap-5 lg:p-8"
     >
       <header className="flex items-center justify-between gap-4">
         <h2 className="font-bold text-lg">Meus links</h2>
